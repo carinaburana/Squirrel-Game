@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class ConsoleIO {
 
-    public char getInput(){
+    public char readInput(){
         //reads from console
         Scanner scanner = new Scanner(System.in);
         System.out.println();
