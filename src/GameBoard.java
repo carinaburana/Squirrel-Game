@@ -1,17 +1,26 @@
+import java.security.PublicKey;
 import java.util.Arrays;
 
 public class GameBoard {
-    private static final int WIDTH=10;
-    private static final int HEIGHT=10;
-    private Entity[][] gameBoard=new Entity[WIDTH][HEIGHT];
-    
-    
-    public int getWidth(){
-        return gameBoard.length; }
-    
-    public int getHeight(){
-        return  gameBoard[0].length; }
-    
+    int height;
+    int width;
+    private Entity[][] gameBoard;
+
+    public GameBoard(int width, int height){
+        Entity[][] gameBoard = new Entity[width][height];
+        this.width=width;
+        this.height=height;
+
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
     public Entity getEntity(XY pos) {
         if (notInRange(pos))
             return null;
@@ -26,14 +35,14 @@ public class GameBoard {
         
         if (notInRange(pos))
             return;
-        Entity boardField = gameBoard[pos.getX()][pos.getY()];
+        Entity boardField = this.gameBoard[pos.getX()][pos.getY()];
         if (boardField == null)
             gameBoard[pos.getX()][pos.getY()] = entity;
     }
     
-    public static boolean notInRange(XY pos) {
-        return pos.getX() < 0 || pos.getX() >= WIDTH ||
-                pos.getY() < 0 || pos.getY() >= HEIGHT;
+    public boolean notInRange(XY pos) {
+        return pos.getX() < 0 || pos.getX() >= this.width ||
+                pos.getY() < 0 || pos.getY() >= this.height;
     }
 
     public String toString() {
