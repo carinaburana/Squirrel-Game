@@ -3,33 +3,32 @@ import java.util.Arrays;
 public class BoardGame {
     private static final int WIDTH=10;
     private static final int HEIGHT=10;
-    private Entity[][] entitiesBoard=new Entity[WIDTH][HEIGHT];
+    private Entity[][] gameBoard=new Entity[WIDTH][HEIGHT];
     
     
     public int getWidth(){
-        return entitiesBoard.length;
+        return gameBoard.length;
     }
     
     public int getHeight(){
-        return  entitiesBoard[0].length;
+        return  gameBoard[0].length;
     }
     
     public Entity getEntity(XY pos) {
         if (!isInRange(pos))
             return null;
-        return entitiesBoard[pos.getX()][pos.getY()];
+        return gameBoard[pos.getX()][pos.getY()];
     }
     
     
-    public void setEntity(XY pos, Entity entity, boolean overwrite) {
+    public void setEntity(XY pos, Entity entity) {
         
         if (!isInRange(pos))
             return;
-        Entity boardField = entitiesBoard[pos.getX()][pos.getY()];
-        if (boardField != null && overwrite == false)
-            return;
-        else
-            entitiesBoard[pos.getX()][pos.getY()] = entity;
+        Entity boardField = gameBoard[pos.getX()][pos.getY()];
+        if (boardField == null)
+            gameBoard[pos.getX()][pos.getY()] = entity;
+            
         
     }
     
@@ -41,7 +40,7 @@ public class BoardGame {
     @Override
     public String toString() {
         return "BoardGame{" +
-                "entitiesBoard=" + Arrays.toString(entitiesBoard) +
+                "gameBoard=" + Arrays.toString(gameBoard) +
                 '}';
     }
 }

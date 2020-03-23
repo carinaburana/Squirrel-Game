@@ -4,12 +4,12 @@ public class EntitySet {
     
     
     public void add(Entity entity, XY pos){
-        boardGame.setEntity(pos,entity,true);
+        boardGame.setEntity(pos,entity);
     }
     
     
     public void remove(Entity entity,XY pos){
-        boardGame.setEntity(pos,null,true);
+        boardGame.setEntity(pos,null);
     }
 
 }
