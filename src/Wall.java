@@ -4,6 +4,9 @@ public class Wall extends Entity{
 
     public Wall(int id, XY startXy){
         super(startXy, id, ENERGY);
+    }
+
+    public void nextStep(){
 
     }
 }

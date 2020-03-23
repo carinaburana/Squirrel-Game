@@ -5,4 +5,9 @@ public class BadPlant extends Entity {
     public BadPlant(XY startXy,int id) {
         super(startXy,id,START_ENERGY);
     }
+
+    @Override
+    public void nextStep() {
+
+    }
 }
