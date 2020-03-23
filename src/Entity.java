@@ -55,7 +55,7 @@ public abstract class Entity {
                 x++;
                 y++;
         }
-        setXy(x, y);
+        new XY(x, y);
 
 
     }
