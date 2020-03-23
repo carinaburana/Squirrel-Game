@@ -29,7 +29,7 @@ public abstract class Entity {
         this.id =id;
     }
 
-    public void updateEnergy(int energy, int deltaEnergy){
+    public void updateEnergy(int deltaEnergy){
         energy+=deltaEnergy;   }
 
 
