@@ -1,2 +1,5 @@
-public class MasterSquirrel { //hallo blabla
+public class MasterSquirrel {
+
+    //hier ist ein Kommentar
+    //hallo blabla
 }
