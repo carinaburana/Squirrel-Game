@@ -32,12 +32,16 @@ public class GameBoard {
     }
     
     public void setEntity(XY pos, Entity entity) {
-        
+
         if (notInRange(pos))
-            return;
-        Entity boardField = this.gameBoard[pos.getX()][pos.getY()];
-        if (boardField == null)
-            gameBoard[pos.getX()][pos.getY()] = entity;
+            System.out.println("not in range");
+
+        else
+          try{  gameBoard[pos.getX()][pos.getY()] = entity;}
+          catch (NullPointerException e){
+              System.out.println("jez haben wir nen NullPointer in setEntity");
+          }
+
     }
     
     public boolean notInRange(XY pos) {

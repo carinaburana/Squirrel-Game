@@ -46,12 +46,19 @@ public class EntitySet {
     public void fillBoardRandomly(){
         Entity[][] board = gameBoard.getGameBoard();
         for (int counterOfInstances = 0; counterOfInstances<=5; counterOfInstances++){
-            new Wall(generateXY(board), generateId());
-            new GoodBeast(generateXY(board), generateId());
-            new BadBeast(generateXY(board), generateId());
-            new BadPlant(generateXY(board), generateId());
-            new GoodPlant(generateXY(board), generateId());
-            new Wall(generateXY(board), generateId());
+
+            Wall wall = new Wall(generateXY(board), generateId());
+            gameBoard.setEntity(wall.getXy(), wall);
+           GoodBeast goodBeast = new GoodBeast(generateXY(board), generateId());
+           gameBoard.setEntity(goodBeast.getXy(), goodBeast);
+           BadBeast badBeast = new BadBeast(generateXY(board), generateId());
+           gameBoard.setEntity(badBeast.getXy(), badBeast);
+          BadPlant badPlant = new BadPlant(generateXY(board), generateId());
+          gameBoard.setEntity(badPlant.getXy(), badPlant);
+          GoodPlant goodPlant = new GoodPlant(generateXY(board), generateId());
+          gameBoard.setEntity(goodPlant.getXy(), goodPlant);
+          wall = new Wall(generateXY(board), generateId());
+        gameBoard.setEntity(wall.getXy(), wall);
         }
     }
 
