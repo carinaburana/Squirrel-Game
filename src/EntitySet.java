@@ -8,7 +8,7 @@ public class EntitySet {
     }
     
     
-    public void remove(Entity entity,XY pos){
+    public void remove(Entity entity, XY pos){
         boardGame.setEntity(pos,null);
     }
 
