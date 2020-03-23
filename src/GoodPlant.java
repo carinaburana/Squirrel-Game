@@ -5,5 +5,8 @@ public class GoodPlant extends Entity {
         energy=100;
 
 
+
     }
 }
+
+

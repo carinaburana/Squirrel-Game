@@ -24,5 +24,13 @@ public abstract class Entity {
     public void setXy(XY xy){
         this.xy=xy;
     }
-    
+
+    public void updateEnergy(int energy, int deltaEnergy){
+        energy+=deltaEnergy;   }
+
+
+
 }
+
+
+
