@@ -1,11 +1,13 @@
 public abstract class Entity {
     
-    private int id;
-    private int energy;
+    protected final int id;
+    protected int energy;
     private XY xy;
     
-    public Entity(XY startXy) {
+    public Entity(XY startXy, int id, int energy) {
         this.xy=startXy;
+        this.id=id;
+        this.energy=energy;
     }
     
     public int getId() {
@@ -24,10 +26,7 @@ public abstract class Entity {
     public void setXy(XY xy){
         this.xy=xy;
     }
-
-    public void setID(int id){
-        this.id =id;
-    }
+    
 
     public void updateEnergy(int deltaEnergy){
         energy+=deltaEnergy;   }

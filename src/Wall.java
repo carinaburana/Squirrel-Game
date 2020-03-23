@@ -1,9 +1,8 @@
 public class Wall extends Entity{
+    public final static int START_ENERGY=-10;
 
-    public final int ENERGY= -10;
 
-    public Wall(int id, XY startXy){
-        super(startXy);
-
+    public Wall(XY startXy, int id){
+        super(startXy,id,START_ENERGY);
     }
 }
