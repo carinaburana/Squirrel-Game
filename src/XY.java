@@ -24,4 +24,11 @@ public final class XY {
         return y;
     }
 
+    @Override
+    public String toString() {
+        return "XY{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }

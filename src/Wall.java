@@ -2,7 +2,7 @@ public class Wall extends Entity{
 
     public final static int ENERGY= -10;
 
-    public Wall(int id, XY startXy){
+    public Wall(XY startXy, int id){
         super(startXy, id, ENERGY);
     }
 

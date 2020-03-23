@@ -68,6 +68,13 @@ public abstract class Entity {
 
     }
 
+    @Override
+    public String toString() {
+        return "Entity{" +
+                "energy=" + energy +
+                ", xy=" + xy +
+                '}';
+    }
 
     public void updateEnergy(int deltaEnergy) {
         energy += deltaEnergy;
