@@ -4,6 +4,8 @@ public abstract class Entity {
     protected int energy;
     protected XY xy;
 
+
+
     public int getId(){
     return id;
 }

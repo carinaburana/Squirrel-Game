@@ -1,2 +1,4 @@
-public class MiniSquirrel {
-}
+public class MiniSquirrel extends  MasterSquirrel{
+
+
+    }
