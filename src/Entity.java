@@ -1,8 +1,8 @@
 public abstract class Entity {
 
-    private static int id;
-    private int energy;
-    private XY xy;
+    protected static int id;
+    protected int energy;
+    protected XY xy;
 
     public Entity(XY startXy, int id, int energy) {
         this.xy=startXy;
