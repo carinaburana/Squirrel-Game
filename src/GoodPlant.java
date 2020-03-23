@@ -1,2 +1,7 @@
-public class GoodPlant {
+public class GoodPlant extends Entity {
+
+    public GoodPlant(int id, int energy, XY xy){
+
+
+    }
 }
