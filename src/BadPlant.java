@@ -1,7 +1,9 @@
 public class BadPlant extends Entity {
+    
+    private final static int START_ENERGY=-100;
 
-    public BadPlant(int id, XY startXy) {
-        super(startXy);
+    public BadPlant(XY startXy,int id) {
+        super(startXy,id,START_ENERGY);
         energy = -100;
     }
 }

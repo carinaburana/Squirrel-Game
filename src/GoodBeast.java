@@ -1,8 +1,9 @@
 public class GoodBeast extends Entity {
+    private final static int START_ENERGY=200;
 
-    public GoodBeast(int id, XY startXy){
-        super(startXy,id);
-        energy=200;
+    public GoodBeast(XY startXy,int id){
+        super(startXy,id,START_ENERGY);
+        
 
     }
 }

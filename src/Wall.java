@@ -1,5 +1,5 @@
 public class Wall extends Entity{
-    public final static int START_ENERGY=-10;
+    private final static int START_ENERGY=-10;
 
 
     public Wall(XY startXy, int id){
