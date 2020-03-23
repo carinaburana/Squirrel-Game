@@ -1,7 +1,7 @@
 public abstract class Entity {
 
-    protected final int id;
-    protected int energy;
+    private static int id;
+    private int energy;
     private XY xy;
 
     public Entity(XY startXy, int id, int energy) {
