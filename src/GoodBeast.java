@@ -3,7 +3,7 @@ public class GoodBeast extends Entity {
 
     public GoodBeast(XY startXy,int id){
         super(startXy,id,START_ENERGY);
-        
+
 
     }
 }
