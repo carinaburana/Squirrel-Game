@@ -15,7 +15,7 @@ public class BoardGame {
     }
     
     public Entity getEntity(XY pos) {
-        if (!isInRange(pos))
+        if (notInRange(pos))
             return null;
         return gameBoard[pos.getX()][pos.getY()];
     }
@@ -23,7 +23,7 @@ public class BoardGame {
     
     public void setEntity(XY pos, Entity entity) {
         
-        if (!isInRange(pos))
+        if (notInRange(pos))
             return;
         Entity boardField = gameBoard[pos.getX()][pos.getY()];
         if (boardField == null)
@@ -32,9 +32,9 @@ public class BoardGame {
         
     }
     
-    public static boolean isInRange(XY pos) {
-        return !(pos.getX() < 0 || pos.getX() >= WIDTH ||
-                pos.getY() < 0 || pos.getY() >= HEIGHT);
+    public static boolean notInRange(XY pos) {
+        return pos.getX() < 0 || pos.getX() >= WIDTH ||
+                pos.getY() < 0 || pos.getY() >= HEIGHT;
     }
     
     @Override

@@ -37,23 +37,31 @@ public abstract class Entity {
             case 1:
                 x--;
                 y--;
+                break;
             case 2:
                 y--;
+                break;
             case 3:
                 y--;
                 x++;
+                break;
             case 4:
                 x--;
+                break;
             case 5:
                 x++;
+                break;
             case 6:
                 x--;
                 y--;
+                break;
             case 7:
                 y++;
+                break;
             case 8:
                 x++;
                 y++;
+                break;
         }
         new XY(x, y);
 
