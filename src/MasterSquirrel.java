@@ -12,14 +12,16 @@ public class MasterSquirrel extends Entity {
     public MasterSquirrel(XY startXy,int id, int energy){
         super(startXy,id,energy);
     }
-    
+
+
+    protected void spawnMini(XY startXy, int energy){
+        MiniSquirrel newMini = new MiniSquirrel(this.id, startXy, energy);
+    }
+
     public boolean checkMini(Entity entity){
-        if(entity instanceof MiniSquirrel){
-            MiniSquirrel ms= (MiniSquirrel)entity;
-            if(ms.getMasterSquirrel()==this);
-            return true;
-        }
-        return false;
+        if(entity instanceof MiniSquirrel) {
+            return (entity.id == this.id);
+        }return false;
     }
 
 
