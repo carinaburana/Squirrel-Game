@@ -25,8 +25,8 @@ public abstract class Entity {
         this.xy=xy;
     }
 
-    public void setID(){
-        this.xy=xy;
+    public void setID(int id){
+        this.id =id;
     }
 
     public void updateEnergy(int energy, int deltaEnergy){
