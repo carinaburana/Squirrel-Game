@@ -1,0 +1,47 @@
+import java.util.Arrays;
+
+public class BoardGame {
+    private static final int WIDTH=10;
+    private static final int HEIGHT=10;
+    private Entity[][] entitiesBoard=new Entity[WIDTH][HEIGHT];
+    
+    
+    public int getWidth(){
+        return entitiesBoard.length;
+    }
+    
+    public int getHeight(){
+        return  entitiesBoard[0].length;
+    }
+    
+    public Entity getEntity(XY pos) {
+        if (!isInRange(pos))
+            return null;
+        return entitiesBoard[pos.getX()][pos.getY()];
+    }
+    
+    
+    public void setEntity(XY pos, Entity entity, boolean overwrite) {
+        
+        if (!isInRange(pos))
+            return;
+        Entity boardField = entitiesBoard[pos.getX()][pos.getY()];
+        if (boardField != null && overwrite == false)
+            return;
+        else
+            entitiesBoard[pos.getX()][pos.getY()] = entity;
+        
+    }
+    
+    public static boolean isInRange(XY pos) {
+        return !(pos.getX() < 0 || pos.getX() >= WIDTH ||
+                pos.getY() < 0 || pos.getY() >= HEIGHT);
+    }
+    
+    @Override
+    public String toString() {
+        return "BoardGame{" +
+                "entitiesBoard=" + Arrays.toString(entitiesBoard) +
+                '}';
+    }
+}
