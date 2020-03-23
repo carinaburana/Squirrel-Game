@@ -13,8 +13,8 @@ public class MasterSquirrel extends Entity {
         super(startXy,id,energy);
     }
 
-    public boolean checkMini(int parentID){
-        return (parentID==id);
+    public boolean checkMini(MiniSquirrel mini){
+        return (MiniSquirrel.parentID==id);
     }
 
 
