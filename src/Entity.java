@@ -1,8 +1,8 @@
 public abstract class Entity {
 
-    protected static int id;
-    protected int energy;
-    protected XY xy;
+    private static int id;
+    private int energy;
+    private XY xy;
 
     public Entity(XY startXy, int id, int energy) {
         this.xy = startXy;
@@ -23,8 +23,8 @@ public abstract class Entity {
     }
 
 
-    public void setXy(XY xy) {
-        this.xy = xy;
+    public void setXy(int x, int y) {
+        this.xy = new XY(x, y);
     }
 
     public void nextStep() {
@@ -34,7 +34,7 @@ public abstract class Entity {
         int y = getXy().getY();
 
         switch (zufall) {
-            case 1: //--
+            case 1:
                 x--;
                 y--;
             case 2:
@@ -55,6 +55,7 @@ public abstract class Entity {
                 x++;
                 y++;
         }
+        setXy(x, y);
 
 
     }
