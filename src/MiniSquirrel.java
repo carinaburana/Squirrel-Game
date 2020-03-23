@@ -1,10 +1,10 @@
 public class MiniSquirrel extends MasterSquirrel{
 
-    public static int parentID;
+    public static MasterSquirrel patron;
 
-    public MiniSquirrel(int id, XY startXy, int parentID, int energy){
+    public MiniSquirrel(int id, XY startXy, MasterSquirrel patron, int energy) {
         super(startXy, id, energy);
-        this.parentID=parentID;
+        this.patron = patron;
     }
 
 

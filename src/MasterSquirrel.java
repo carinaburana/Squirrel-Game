@@ -14,7 +14,7 @@ public class MasterSquirrel extends Entity {
     }
 
     public boolean checkMini(MiniSquirrel mini){
-        return (MiniSquirrel.parentID==id);
+        return (mini.patron==this);
     }
 
 
