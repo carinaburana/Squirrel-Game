@@ -1,21 +1,23 @@
 public class EntitySet {
     Entity[] allEntitiesOnField;
 
-    GameBoard gameBoard = new GameBoard(10, 10);
-    int height = gameBoard.getHeight();
-    int width = gameBoard.getWidth();
-
-    public EntitySet() {
-        allEntitiesOnField = new Entity[height * width];
+    public EntitySet(int maxNumberOfEntities) {
+        allEntitiesOnField = new Entity[maxNumberOfEntities];
     }
 
 
     public void add(Entity entity) {
           for (int i = 0; i < allEntitiesOnField.length; i++) {
-            if (allEntitiesOnField[i] == null) {
+            try {
+                if (allEntitiesOnField[i] == null) {
+                    allEntitiesOnField[i] = entity;
+                    break;
+                }
+            }catch(NullPointerException e){
                 allEntitiesOnField[i] = entity;
-                break;
-            }
+                }
+
+
         }
     }
 
@@ -52,13 +54,14 @@ public class EntitySet {
         return id;
     }
 
-    public XY generateXY(Entity[][] gameBoard) {
+    public XY generateXY(GameBoard gameBoard) {
+        Entity[][] entityArray = gameBoard.getGameBoard();
         int x = 0, y = 0;
         try {
-            for (x = 0; x <= width; x++) {
-                for (y = 0; y <= height; y++) {
+            for (x = 0; x <= gameBoard.getWidth(); x++) {
+                for (y = 0; y <= gameBoard.getHeight(); y++) {
                     try {
-                        if (gameBoard[x][y] == null)
+                        if (entityArray[x][y] == null)
                             return new XY(x, y);
                     } catch (NullPointerException e) {
                         return new XY(x, y);
@@ -73,19 +76,18 @@ public class EntitySet {
     }
 
 
-    public void fillBoardRandomly() {
-        Entity[][] board = gameBoard.getGameBoard();
-        for (int counterOfInstances = 0; counterOfInstances <= 5; counterOfInstances++) {
+    public void fillBoardRandomly(GameBoard gameBoard) {
 
-            Wall wall = new Wall(generateXY(board), generateId());
+        for (int counterOfInstances = 0; counterOfInstances <= 5; counterOfInstances++) {
+            Wall wall = new Wall(generateXY(gameBoard), generateId());
             add(wall);
-            GoodBeast goodBeast = new GoodBeast(generateXY(board), generateId());
+            GoodBeast goodBeast = new GoodBeast(generateXY(gameBoard), generateId());
             add(goodBeast);
-            BadBeast badBeast = new BadBeast(generateXY(board), generateId());
+            BadBeast badBeast = new BadBeast(generateXY(gameBoard), generateId());
             add(badBeast);
-            BadPlant badPlant = new BadPlant(generateXY(board), generateId());
+            BadPlant badPlant = new BadPlant(generateXY(gameBoard), generateId());
             add(badPlant);
-            GoodPlant goodPlant = new GoodPlant(generateXY(board), generateId());
+            GoodPlant goodPlant = new GoodPlant(generateXY(gameBoard), generateId());
             add(goodPlant);
 
 
