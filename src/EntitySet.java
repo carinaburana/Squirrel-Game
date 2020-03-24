@@ -53,17 +53,17 @@ public class EntitySet {
 
 
 
-    private XY randomizeXY(GameBoard gameBoard){
-        int x = (int) (Math.random()*gameBoard.getWidth());
-        int y = (int) (Math.random()*gameBoard.getHeight());
-        XY position = new XY(x,y);
-
-        return position;
-    }
 
     public void fillBoardRandomly(GameBoard gameBoard) {
 
+        XY position = new XY(0,0);
+       /* while (gameBoard.)
+
         for (int counterOfInstances = 0; counterOfInstances <= 3; counterOfInstances++) {
+
+
+
+            gameBoard.randomizeXY(gameBoard)
             Wall wall = new Wall(randomizeXY(gameBoard), generateId());
             add(wall);
             gameBoard.updateGameBoard(allEntitiesOnField);
@@ -80,9 +80,9 @@ public class EntitySet {
             add(goodPlant);
             gameBoard.updateGameBoard(allEntitiesOnField);
 
-
+*/
         }
-    }
+
 
     public Entity[] getAllEntitiesOnField() {
         return allEntitiesOnField;
