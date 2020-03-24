@@ -53,7 +53,7 @@ public abstract class Entity {
                 break;
             case 6:
                 x--;
-                y--;
+                y++;
                 break;
             case 7:
                 y++;
