@@ -7,17 +7,15 @@ public class EntitySet {
 
 
     public void add(Entity entity) {
-          for (int i = 0; i < allEntitiesOnField.length; i++) {
+        for (int i = 0; i < allEntitiesOnField.length; i++) {
             try {
                 if (allEntitiesOnField[i] == null) {
                     allEntitiesOnField[i] = entity;
                     break;
                 }
-            }catch(NullPointerException e){
+            } catch (NullPointerException e) {
                 allEntitiesOnField[i] = entity;
-                }
-
-
+            }
         }
     }
 
@@ -33,7 +31,6 @@ public class EntitySet {
     public void nextStep(Entity[] allEntitiesOnField) {
         for (Entity e : allEntitiesOnField)
             e.nextStep();
-
     }
 
 
@@ -102,10 +99,11 @@ public class EntitySet {
     public String toString() {
         StringBuilder builder = new StringBuilder();
 
-        for (Entity e : allEntitiesOnField) {
+       try{ for (Entity e : allEntitiesOnField) {
             builder.append(e.toString());
             builder.append('\n');
-        }
+        }}
+       catch (NullPointerException e){}
 
         return builder.toString();
     }
