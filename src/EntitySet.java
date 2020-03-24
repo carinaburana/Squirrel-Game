@@ -5,16 +5,20 @@ public class EntitySet {
     int height = gameBoard.getHeight();
     int width =  gameBoard.getWidth();
     
-    public  EntitySet(int size){
-        allEntitiesOnField=new Entity[size];
+    public EntitySet(){
+        allEntitiesOnField=new Entity[height*width];
     }
 
     
     
     public EntitySet add(Entity entity) {
         for (Entity e : allEntitiesOnField) {
+        try {
             if (e != null && e.equals(entity))
                 return this; // return the current object instance
+        }catch(NullPointerException n){
+
+        }
         }
         
         for (int i = 0; i < allEntitiesOnField.length; i++) {

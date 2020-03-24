@@ -13,11 +13,9 @@ public class Main {
 //make them move
             for (int i = 0; i <= allEntitiesOnField.length-1; i++) {
                 Entity entity = allEntitiesOnField[i];
-                try {
+               try {
                     entity.nextStep();
-                } catch (NullPointerException e) {
-
-                }
+               } catch (NullPointerException e) { }
             }
         }
 
