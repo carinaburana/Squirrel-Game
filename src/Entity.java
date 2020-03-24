@@ -6,7 +6,7 @@ public abstract class Entity {
 
     public Entity(XY startXy, int id, int energy) {
         this.xy = startXy;
-        this.id = id;
+        Entity.id = id;          //Enitiy.id weil irgendwas static blabla (note to self: look it up)
         this.energy = energy;
     }
 
@@ -22,46 +22,24 @@ public abstract class Entity {
         return xy;
     }
 
-
     public void setXy(int x, int y) {
         this.xy = new XY(x, y);
     }
 
     public void nextStep() {
-
         int zufall = (int) (Math.random() * 8) + 1;
         int x = getXy().getX();
         int y = getXy().getY();
 
         switch (zufall) {
-            case 1:
-                x--;
-                y--;
-                break;
-            case 2:
-                y--;
-                break;
-            case 3:
-                y--;
-                x++;
-                break;
-            case 4:
-                x--;
-                break;
-            case 5:
-                x++;
-                break;
-            case 6:
-                x--;
-                y++;
-                break;
-            case 7:
-                y++;
-                break;
-            case 8:
-                x++;
-                y++;
-                break;
+            case 1: x--; y--; break;
+            case 2: y--; break;
+            case 3: y--; x++; break;
+            case 4: x--; break;
+            case 5: x++; break;
+            case 6: x--; y++; break;
+            case 7: y++; break;
+            case 8: x++; y++; break;
         }
         new XY(x, y);
 

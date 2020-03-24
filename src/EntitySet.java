@@ -51,44 +51,32 @@ public class EntitySet {
         return id;
     }
 
-    public XY generateXY(GameBoard gameBoard) {
-        Entity[][] entityArray = gameBoard.getGameBoard();
-        int x = 0, y = 0;
-        try {
-            for (x = 0; x <= gameBoard.getWidth(); x++) {
-                for (y = 0; y <= gameBoard.getHeight(); y++) {
-                    try {
-                        if (entityArray[x][y] == null)
-                            return new XY(x, y);
-                    } catch (NullPointerException e) {
-                        return new XY(x, y);
-                    }
-                }
 
-            }
-        } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("board already filled with allEntitiesOnField! (randomXY)");
-        }
-        return new XY(0, 0);
+
+    private XY randomizeXY(GameBoard gameBoard){
+        int x = (int) (Math.random()*gameBoard.getWidth());
+        int y = (int) (Math.random()*gameBoard.getHeight());
+        XY position = new XY(x,y);
+
+        return position;
     }
-
 
     public void fillBoardRandomly(GameBoard gameBoard) {
 
         for (int counterOfInstances = 0; counterOfInstances <= 3; counterOfInstances++) {
-            Wall wall = new Wall(generateXY(gameBoard), generateId());
+            Wall wall = new Wall(randomizeXY(gameBoard), generateId());
             add(wall);
             gameBoard.updateGameBoard(allEntitiesOnField);
-            GoodBeast goodBeast = new GoodBeast(generateXY(gameBoard), generateId());
+            GoodBeast goodBeast = new GoodBeast(randomizeXY(gameBoard), generateId());
             add(goodBeast);
             gameBoard.updateGameBoard(allEntitiesOnField);
-            BadBeast badBeast = new BadBeast(generateXY(gameBoard), generateId());
+            BadBeast badBeast = new BadBeast(randomizeXY(gameBoard), generateId());
             add(badBeast);
             gameBoard.updateGameBoard(allEntitiesOnField);
-            BadPlant badPlant = new BadPlant(generateXY(gameBoard), generateId());
+            BadPlant badPlant = new BadPlant(randomizeXY(gameBoard), generateId());
             add(badPlant);
             gameBoard.updateGameBoard(allEntitiesOnField);
-            GoodPlant goodPlant = new GoodPlant(generateXY(gameBoard), generateId());
+            GoodPlant goodPlant = new GoodPlant(randomizeXY(gameBoard), generateId());
             add(goodPlant);
             gameBoard.updateGameBoard(allEntitiesOnField);
 
@@ -108,7 +96,7 @@ public class EntitySet {
             builder.append(e.toString());
             builder.append('\n');
         }}
-       catch (NullPointerException e){}
+       catch (NullPointerException ignored){}
 
         return builder.toString();
     }
