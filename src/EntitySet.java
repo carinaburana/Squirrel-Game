@@ -75,7 +75,7 @@ public class EntitySet {
 
     public void fillBoardRandomly(GameBoard gameBoard) {
 
-        for (int counterOfInstances = 0; counterOfInstances <= 5; counterOfInstances++) {
+        for (int counterOfInstances = 0; counterOfInstances <= 3; counterOfInstances++) {
             Wall wall = new Wall(generateXY(gameBoard), generateId());
             add(wall);
             GoodBeast goodBeast = new GoodBeast(generateXY(gameBoard), generateId());

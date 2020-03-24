@@ -8,7 +8,7 @@ public class Main {
         Entity[] allEntitiesOnField = testSetOfEntities.getAllEntitiesOnField();
 
 //loooooooooop
-        for (int testRounds = 0; testRounds < 10; testRounds++) {
+        for (int testRounds = 0; testRounds < 3; testRounds++) {
             System.out.println(testSetOfEntities.toString());
 //make them move
             for (int i = 0; i <= allEntitiesOnField.length-1; i++) {
