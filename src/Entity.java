@@ -49,6 +49,7 @@ public abstract class Entity {
     @Override
     public String toString() {
         return "Entity{" +
+                "id=" +id +
                 "energy=" + energy +
                 ", xy=" + xy +
                 '}';
