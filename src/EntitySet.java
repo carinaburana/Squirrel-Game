@@ -10,7 +10,6 @@ public class EntitySet {
     }
 
     
-    
     public EntitySet add(Entity entity) {
         for (Entity e : allEntitiesOnField) {
         try {
@@ -27,7 +26,6 @@ public class EntitySet {
                 break;
             }
         }
-        
         return this;
     }
     

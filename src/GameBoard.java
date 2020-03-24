@@ -10,7 +10,6 @@ public class GameBoard {
         Entity[][] gameBoard = new Entity[width][height];
         this.width=width;
         this.height=height;
-
     }
 
     public int getHeight() {
@@ -26,23 +25,17 @@ public class GameBoard {
             return null;
         return gameBoard[pos.getX()][pos.getY()];
     }*/
-
     public Entity[][] getGameBoard(){
         return gameBoard;
     }
-    
   /*  public void setEntity(XY pos, Entity entity) {
 
         if (notInRange(pos))
             System.out.println("not in range");
-        
-    
         if (gameBoard[pos.getX()][pos.getY()] != null )
             return;
         else
             gameBoard[pos.getX()][pos.getY()] = entity;
-         
-
     }
     
     public boolean notInRange(XY pos) {
