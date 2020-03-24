@@ -1,24 +1,54 @@
 public class EntitySet {
-
+    Entity[] allEntitiesOnField;
+    
     GameBoard gameBoard = new GameBoard(10, 10);
     int height = gameBoard.getHeight();
     int width =  gameBoard.getWidth();
+    
+    public  EntitySet(int size){
+        allEntitiesOnField=new Entity[size];
+    }
 
-    Entity[] allEntitiesOnField = new Entity[width * height];
+    
+    
+    public EntitySet add(Entity entity) {
+        for (Entity e : allEntitiesOnField) {
+            if (e != null && e.equals(entity))
+                return this; // return the current object instance
+        }
+        
+        for (int i = 0; i < allEntitiesOnField.length; i++) {
+            if (allEntitiesOnField[i] == null) {
+                allEntitiesOnField[i] = entity;
+                break;
+            }
+        }
+        
+        return this;
+    }
+    
+    public void remove(Entity entity) {
+        for (int i = 0; i < allEntitiesOnField.length; i++) {
+            if (entity.equals(allEntitiesOnField[i])) {
+                allEntitiesOnField[i] = null;
+                return;
+            }
+        }
+    }
 
     public int generateId() {
         int id = 0;
         try {
             for (id = 0; id <= allEntitiesOnField.length; id++) {
                 try {
-                    if (allEntitiesOnField[id] == null)
+                    if (allEntitiesOnField == null)
                         return id;
                 }catch(NullPointerException e){
                     return id;
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            System.out.println("board already filled with entities! (randomID)"); }
+            System.out.println("board already filled with allEntitiesOnField! (randomID)"); }
         return id;
     }
 
@@ -37,7 +67,7 @@ public class EntitySet {
 
         }
         }catch(ArrayIndexOutOfBoundsException e) {
-            System.out.println("board already filled with entities! (randomXY)");
+            System.out.println("board already filled with allEntitiesOnField! (randomXY)");
         }
             return new XY(0, 0);
         }
@@ -48,31 +78,36 @@ public class EntitySet {
         for (int counterOfInstances = 0; counterOfInstances<=5; counterOfInstances++){
 
             Wall wall = new Wall(generateXY(board), generateId());
-            gameBoard.setEntity(wall.getXy(), wall);
-           GoodBeast goodBeast = new GoodBeast(generateXY(board), generateId());
-           gameBoard.setEntity(goodBeast.getXy(), goodBeast);
-           BadBeast badBeast = new BadBeast(generateXY(board), generateId());
-           gameBoard.setEntity(badBeast.getXy(), badBeast);
-          BadPlant badPlant = new BadPlant(generateXY(board), generateId());
-          gameBoard.setEntity(badPlant.getXy(), badPlant);
-          GoodPlant goodPlant = new GoodPlant(generateXY(board), generateId());
-          gameBoard.setEntity(goodPlant.getXy(), goodPlant);
-          wall = new Wall(generateXY(board), generateId());
-        gameBoard.setEntity(wall.getXy(), wall);
+            add(wall);
+            GoodBeast goodBeast=new GoodBeast(generateXY(board),generateId());
+            add(goodBeast);
+            BadBeast badBeast=new BadBeast(generateXY(board),generateId());
+            add(badBeast);
+            BadPlant badPlant=new BadPlant(generateXY(board),generateId());
+            add(badPlant);
+            GoodPlant goodPlant=new GoodPlant(generateXY(board),generateId());
+            add(goodPlant);
+          
+          
+          
         }
     }
 
     public Entity[] getAllEntitiesOnField(){
         return allEntitiesOnField;
     }
-
-    public void add(Entity entity, XY pos) {
-        gameBoard.setEntity(pos, entity);
+    
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        
+        for (Entity e : allEntitiesOnField) {
+            builder.append(e.toString());
+            builder.append('\n');
+        }
+        
+        return builder.toString();
     }
 
-
-    public void remove(Entity entity, XY pos) {
-        gameBoard.setEntity(pos, null);
-    }
-
+  
 }
