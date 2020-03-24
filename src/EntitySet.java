@@ -78,14 +78,19 @@ public class EntitySet {
         for (int counterOfInstances = 0; counterOfInstances <= 3; counterOfInstances++) {
             Wall wall = new Wall(generateXY(gameBoard), generateId());
             add(wall);
+            gameBoard.updateGameBoard(allEntitiesOnField);
             GoodBeast goodBeast = new GoodBeast(generateXY(gameBoard), generateId());
             add(goodBeast);
+            gameBoard.updateGameBoard(allEntitiesOnField);
             BadBeast badBeast = new BadBeast(generateXY(gameBoard), generateId());
             add(badBeast);
+            gameBoard.updateGameBoard(allEntitiesOnField);
             BadPlant badPlant = new BadPlant(generateXY(gameBoard), generateId());
             add(badPlant);
+            gameBoard.updateGameBoard(allEntitiesOnField);
             GoodPlant goodPlant = new GoodPlant(generateXY(gameBoard), generateId());
             add(goodPlant);
+            gameBoard.updateGameBoard(allEntitiesOnField);
 
 
         }
