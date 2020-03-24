@@ -37,6 +37,13 @@ public class EntitySet {
             }
         }
     }
+    
+    public void nextStep(Entity[]allEntitiesOnField){
+        for(Entity e:allEntitiesOnField)
+                e.nextStep();
+            
+    }
+    
 
     public int generateId() {
         int id = 0;
