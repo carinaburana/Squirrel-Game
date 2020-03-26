@@ -6,7 +6,7 @@ public abstract class Entity {
 
     public Entity(XY startXy, int id, int energy) {
         this.xy = startXy;
-        Entity.id = id;          //Enitiy.id weil irgendwas static blabla (note to self: look it up)
+        Entity.id = id;          //Enitiy.id weil irgendwas static blabla (note to self, lo
         this.energy = energy;
     }
 
@@ -49,7 +49,6 @@ public abstract class Entity {
     @Override
     public String toString() {
         return "Entity{" +
-                "id=" +id +
                 "energy=" + energy +
                 ", xy=" + xy +
                 '}';

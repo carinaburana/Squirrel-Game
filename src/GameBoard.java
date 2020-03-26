@@ -12,14 +12,14 @@ public class GameBoard {
         this.height = height;
     }
 
-    private XY randomizeXY(){
+    public XY randomizeXY(){
         int x = (int) (Math.random()*width);
         int y = (int) (Math.random()*height);
 
         return new XY(x,y);
     }
 
-    private boolean checkIfPosIsEmpty(XY position){
+    public boolean checkIfPosIsEmpty(XY position){
         Entity[][] entityArray = this.getGameBoard();
         return (entityArray[position.getX()][position.getY()]==null);
 
