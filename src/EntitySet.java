@@ -28,9 +28,19 @@ public class EntitySet {
         }
     }
 
-    public void nextStep(Entity[] allEntitiesOnField) {
-        for (Entity e : allEntitiesOnField)
-            e.nextStep();
+    public void nextStep(Entity[] allEntitiesOnField, GameBoard gameBoard) {
+        XY newPos = null;
+        for (Entity e : allEntitiesOnField) {
+            while (gameBoard.notInRange(e.nextXY())) {
+                newPos = e.nextXY();
+            }
+            try {
+                e.setXy(newPos);
+            } catch (NullPointerException ignored) {
+            }
+            ;
+
+        }
     }
 
 
@@ -52,33 +62,34 @@ public class EntitySet {
     }
 
 
-
-
     public void fillBoardRandomly(GameBoard gameBoard) {
+        XY position = new XY(0, 0);
+        for (int counterOfInstances = 0; counterOfInstances <= 2; counterOfInstances++) {
 
-        XY position = new XY(0,0);
-
-       /* while (gameBoard.)
-        */
-
-        for (int counterOfInstances = 0; counterOfInstances <= 3; counterOfInstances++) {
-
-            Wall wall = new Wall(gameBoard.randomizeXY(), generateId());
+        /*    Wall wall = new Wall(gameBoard.randomizeXY(), generateId());
             add(wall);
             gameBoard.updateGameBoard(allEntitiesOnField);
+*/
+            HandOperatedMasterSquirrel player = new HandOperatedMasterSquirrel(gameBoard.randomizeXY(), generateId());
+            add(player);
+            gameBoard.updateGameBoard(allEntitiesOnField);
+
             GoodBeast goodBeast = new GoodBeast(gameBoard.randomizeXY(), generateId());
             add(goodBeast);
             gameBoard.updateGameBoard(allEntitiesOnField);
+
             BadBeast badBeast = new BadBeast(gameBoard.randomizeXY(), generateId());
             add(badBeast);
             gameBoard.updateGameBoard(allEntitiesOnField);
+            /*
             BadPlant badPlant = new BadPlant(gameBoard.randomizeXY(), generateId());
             add(badPlant);
             gameBoard.updateGameBoard(allEntitiesOnField);
+
             GoodPlant goodPlant = new GoodPlant(gameBoard.randomizeXY(), generateId());
             add(goodPlant);
             gameBoard.updateGameBoard(allEntitiesOnField);
-
+  */
         }
     }
 
@@ -91,11 +102,13 @@ public class EntitySet {
     public String toString() {
         StringBuilder builder = new StringBuilder();
 
-       try{ for (Entity e : allEntitiesOnField) {
-            builder.append(e.toString());
-            builder.append('\n');
-        }}
-       catch (NullPointerException ignored){}
+        try {
+            for (Entity e : allEntitiesOnField) {
+                builder.append(e.toString());
+                builder.append('\n');
+            }
+        } catch (NullPointerException ignored) {
+        }
 
         return builder.toString();
     }

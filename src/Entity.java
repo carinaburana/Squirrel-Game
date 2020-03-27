@@ -4,10 +4,17 @@ public abstract class Entity {
     private int energy;
     private XY xy;
 
-    public Entity(XY startXy, int id, int energy) {
+    public String getType() {
+        return type;
+    }
+
+    private String type;
+
+    public Entity(XY startXy, int id, String type, int energy) {
         this.xy = startXy;
         Entity.id = id;          //Enitiy.id weil irgendwas static blabla (note to self, lo
         this.energy = energy;
+        this.type = type;
     }
 
     public int getId() {
@@ -25,8 +32,10 @@ public abstract class Entity {
     public void setXy(int x, int y) {
         this.xy = new XY(x, y);
     }
+    public void setXy(XY xy) { this.xy = xy;
+    }
 
-    public void nextStep() {
+    public XY nextXY() {
         int zufall = (int) (Math.random() * 8) + 1;
         int x = getXy().getX();
         int y = getXy().getY();
@@ -41,7 +50,8 @@ public abstract class Entity {
             case 7: y++; break;
             case 8: x++; y++; break;
         }
-        new XY(x, y);
+        System.out.println(x +" "+ y);
+        return new XY(x, y);
 
 
     }
@@ -51,6 +61,7 @@ public abstract class Entity {
         return "Entity{" +
                 "energy=" + energy +
                 ", xy=" + xy +
+                ", type='" + type + '\'' +
                 '}';
     }
 

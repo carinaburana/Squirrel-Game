@@ -1,14 +1,15 @@
 public class MiniSquirrel extends MasterSquirrel{
 
-private  MasterSquirrel patron;
+    private final MasterSquirrel PATRON;
+    private final static String TYPE = "ms";
 
     public MiniSquirrel(int id, XY startXy, int energy, MasterSquirrel patron) {
-        super(startXy, id, energy);
-        this.patron= patron;
+        super(startXy, id, TYPE, energy);
+        this.PATRON = patron;
     }
 
-    public MasterSquirrel getPatron() {
-        return patron;
+    public MasterSquirrel getPATRON() {
+        return PATRON;
     }
 
 
