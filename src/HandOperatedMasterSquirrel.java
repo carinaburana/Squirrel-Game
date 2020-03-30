@@ -1,13 +1,13 @@
-public class HandOperatedMasterSquirrel extends MasterSquirrel{
+public class HandOperatedMasterSquirrel extends MasterSquirrel {
 
 
     public static final int START_ENERGY = 1000;
+    private final static String TYPE = "PL";
+
 
     public static String getTYPE() {
         return TYPE;
     }
-
-    private final static String TYPE = "PL";
 
     public HandOperatedMasterSquirrel(XY startXy, int id) {
 
@@ -22,15 +22,26 @@ public class HandOperatedMasterSquirrel extends MasterSquirrel{
     }
 
     public XY nextXY(GameBoard gameBoard) {
-
-        ConsoleIO inputReader = new ConsoleIO();
-        char move = inputReader.readInput();
         XY startPos = this.getXy();
         int x = startPos.getX();
         int y = startPos.getY();
-        startPos = new XY(-1,-1);
+        ConsoleIO inputReader = new ConsoleIO();
 
-        while(gameBoard.notInRange(startPos)){
+        char move = inputReader.readInput();
+        boolean checker = inputReader.inputMakesSense(move);
+
+        while (!checker) ;
+        {
+            System.out.println(">>" + move + "<< try again. not w, a, s or d.");
+            System.out.println(checker);
+            move = inputReader.readInput();
+            checker = inputReader.inputMakesSense(move);
+        }
+
+        System.out.println("left while loop");
+        startPos = new XY(-1, -1);
+        while (gameBoard.notInRange(startPos)) {
+
             switch (move) {
                 case 'w':
                     y--;
@@ -44,8 +55,8 @@ public class HandOperatedMasterSquirrel extends MasterSquirrel{
                 case 'd':
                     x++;
                     break;
-            }}
-
+            }
+        }
         return new XY(x, y);
     }
 

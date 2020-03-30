@@ -1,8 +1,9 @@
-public abstract class Entity {
+public class Entity{
 
     private static int id;
     private int energy;
     private XY xy;
+
 
     public String getType() {
         return type;
@@ -12,7 +13,7 @@ public abstract class Entity {
 
     public Entity(XY startXy, int id, String type, int energy) {
         this.xy = startXy;
-        Entity.id = id;          //Enitiy.id weil irgendwas static blabla (note to self, lo
+        this.id = id;          //Enitiy.id weil irgendwas static blabla (note to self, lo
         this.energy = energy;
         this.type = type;
     }
@@ -25,9 +26,15 @@ public abstract class Entity {
         return energy;
     }
 
+
+    public void updateEnergy() {
+
+    }
+
     public XY getXy() {
         return xy;
     }
+
 
     public void setXy(int x, int y) {
         this.xy = new XY(x, y);
@@ -36,9 +43,11 @@ public abstract class Entity {
     }
 
     public XY nextXY() {
-        int zufall = (int) (Math.random() * 8) + 1;
+        int zufall;
+        zufall = (int) (Math.random() * 8) + 1;
         int x = getXy().getX();
-        int y = getXy().getY();
+        int y;
+        y = getXy().getY();
 
         switch (zufall) {
             case 1: x--; y--; break;
@@ -49,11 +58,11 @@ public abstract class Entity {
             case 6: x--; y++; break;
             case 7: y++; break;
             case 8: x++; y++; break;
+            default:
         }
+
         System.out.println(x +" "+ y);
         return new XY(x, y);
-
-
     }
 
     @Override
@@ -71,8 +80,3 @@ public abstract class Entity {
 
 
 }
-
-
-
-
-
