@@ -13,7 +13,7 @@ public class BadPlant extends Entity {
     }
 
     public String toString() {
-        return "BadPlant" + '\n' +
+        return "de.hsa.games.fatsquirrel.core.BadPlant" + '\n' +
                 super.toString();
     }
 

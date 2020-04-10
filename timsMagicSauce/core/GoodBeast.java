@@ -23,7 +23,7 @@ public class GoodBeast extends Character {
     }
 
     public String toString() {
-        return "GoodBeast" + '\n' +
+        return "de.hsa.games.fatsquirrel.core.GoodBeast" + '\n' +
                 super.toString();
     }
 

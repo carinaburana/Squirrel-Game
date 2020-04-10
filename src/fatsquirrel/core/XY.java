@@ -1,5 +1,6 @@
-public final class XY {
+package fatsquirrel.core;
 
+public final class XY {
     private int x;
     private int y;
 
@@ -16,17 +17,13 @@ public final class XY {
         this.y = y;
     }
 
-    public int getX(){
-        return x;
-    }
+    public int getX(){ return x; }
 
-    public int getY(){
-        return y;
-    }
+    public int getY(){ return y; }
 
     @Override
     public String toString() {
-        return "XY{" +
+        return "de.hsa.games.fatsquirrel.core.XY{" +
                 "x=" + x +
                 ", y=" + y +
                 '}';

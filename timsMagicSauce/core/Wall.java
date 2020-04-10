@@ -9,7 +9,7 @@ public class Wall extends Entity {
     }
 
     public String toString() {
-        return "Wall" + '\n' +
+        return "de.hsa.games.fatsquirrel.core.Wall" + '\n' +
                 super.toString();
     }
 

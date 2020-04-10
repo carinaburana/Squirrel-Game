@@ -50,22 +50,22 @@ public class Board {
                 } while (!entities.isValidPosition(randomPosition));
 
                 switch (key) {
-                    case "GoodPlant":
+                    case "de.hsa.games.fatsquirrel.core.GoodPlant":
                         entities.insert(new GoodPlant(0, randomPosition));
                         break;
-                    case "BadPlant":
+                    case "de.hsa.games.fatsquirrel.core.BadPlant":
                         entities.insert(new BadPlant(0, randomPosition));
                         break;
-                    case "Wall":
+                    case "de.hsa.games.fatsquirrel.core.Wall":
                         entities.insert(new Wall(0, randomPosition));
                         break;
-                    case "GoodBeast":
+                    case "de.hsa.games.fatsquirrel.core.GoodBeast":
                         entities.insert(new GoodBeast(0, randomPosition));
                         break;
-                    case "BadBeast":
+                    case "de.hsa.games.fatsquirrel.core.BadBeast":
                         entities.insert(new BadBeast(0, randomPosition));
                         break;
-                    case "HandOperatedMasterSquirrel":
+                    case "de.hsa.games.fatsquirrel.core.HandOperatedMS":
                         entities.insert(new HandOperatedMasterSquirrel(0, randomPosition));
                         break;
                     default:

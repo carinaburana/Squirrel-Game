@@ -13,7 +13,7 @@ public class GoodPlant extends Entity {
     }
 
     public String toString() {
-        return "GoodPlant" + '\n' +
+        return "de.hsa.games.fatsquirrel.core.GoodPlant" + '\n' +
                 super.toString();
     }
 

@@ -12,11 +12,11 @@ public class BoardConfig {
         width = 10;
         height = 10;
         entityMap = new HashMap<>();
-        entityMap.put("GoodPlant", 1);
-        // entityMap.put("HandOperatedMasterSquirrel", 1);
-        entityMap.put("BadPlant", 3);
-        entityMap.put("BadBeast", 1);
-        entityMap.put("GoodBeast", 2);
+        entityMap.put("de.hsa.games.fatsquirrel.core.GoodPlant", 1);
+        // entityMap.put("de.hsa.games.fatsquirrel.core.HandOperatedMS", 1);
+        entityMap.put("de.hsa.games.fatsquirrel.core.BadPlant", 3);
+        entityMap.put("de.hsa.games.fatsquirrel.core.BadBeast", 1);
+        entityMap.put("de.hsa.games.fatsquirrel.core.GoodBeast", 2);
 
     }
 

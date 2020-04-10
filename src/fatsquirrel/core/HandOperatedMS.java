@@ -1,20 +1,21 @@
+package fatsquirrel.core;
 
-public class MasterSquirrel extends Entity {
+public class HandOperatedMS extends MasterSquirrel {
 
     public static final int START_ENERGY = 1000;
-    private final static String TYPE = "MS";
+    private final static String TYPE = "HO";
 
-    public MasterSquirrel(XY startXy, int id) {
+
+    public HandOperatedMS(XY startXy, int id) {
         super(startXy, id, TYPE, START_ENERGY);
     }
 
-
-    //fürs MiniSquirrels :))
-    public MasterSquirrel(XY startXy, int id, String type, int energy) {
-
+    //fürs MiniSquirrels
+    public HandOperatedMS(XY startXy, int id, String type, int energy) {
         super(startXy, id, type, energy);
     }
 
+    public static String getTYPE() { return TYPE; }
 
     public boolean checkMini(Entity entity) {
         if (entity instanceof MiniSquirrel) {
@@ -24,3 +25,4 @@ public class MasterSquirrel extends Entity {
     }
 
 }
+

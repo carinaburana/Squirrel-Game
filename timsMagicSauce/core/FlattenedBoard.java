@@ -8,7 +8,7 @@ public class FlattenedBoard implements BoardView, EntityContext {
     private Board board;
     private Entity[][] field;
 
-    public FlattenedBoard(Board board) {
+    public FlattenedBoard(Board board) {   //adds entities to board
         field = new Entity[board.getWidth()][board.getHeight()];
         for (Entity e : board.getEntitySet().getEntities()) {
             field[e.getPosition().getX()][e.getPosition().getY()] = e;
@@ -25,6 +25,8 @@ public class FlattenedBoard implements BoardView, EntityContext {
     public void tryMove(MasterSquirrel masterSquirrel, XY moveDirection) {
         Entity entity = field[masterSquirrel.getPosition().getX() + moveDirection.getX()]
                              [masterSquirrel.getPosition().getY() + moveDirection.getY()];
+
+        //collisions
 
         if (entity instanceof Wall) {
             masterSquirrel.updateEnergy(entity.getEnergy());

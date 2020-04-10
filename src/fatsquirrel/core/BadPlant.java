@@ -1,3 +1,5 @@
+package fatsquirrel.core;
+
 public class BadPlant extends Entity {
     
     private final static int START_ENERGY=-100;
@@ -7,8 +9,12 @@ public class BadPlant extends Entity {
         super(startXy,id, TYPE, START_ENERGY);
     }
 
-    @Override
-    public XY nextXY() {
+    public static String getTYPE() {
+        return TYPE;
+    }
+
+
+    public XY nextStep() {
 return this.getXy();
     }
 }

@@ -1,3 +1,5 @@
+package fatsquirrel.core;
+
 public class MiniSquirrel extends MasterSquirrel{
 
     private final MasterSquirrel PATRON;
@@ -12,6 +14,10 @@ public class MiniSquirrel extends MasterSquirrel{
         return PATRON;
     }
 
+    public static String getTYPE() { return TYPE; }
 
+    public void updateEnergy(int deltaEnergy) {
+        this.energy += deltaEnergy;
+    }
 
     }

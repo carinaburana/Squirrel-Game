@@ -56,16 +56,16 @@ public class GameImpl extends Game {
 //                // TO DO
 //                break;
 //            case LEFT:
-//                player.setMoveCommand(new XY(-1, 0));
+//                player.setMoveCommand(new de.hsa.games.fatsquirrel.core.XY(-1, 0));
 //                break;
 //            case RIGHT:
-//                player.setMoveCommand(new XY(1, 0));
+//                player.setMoveCommand(new de.hsa.games.fatsquirrel.core.XY(1, 0));
 //                break;
 //            case UP:
-//                player.setMoveCommand(new XY(0, -1));
+//                player.setMoveCommand(new de.hsa.games.fatsquirrel.core.XY(0, -1));
 //                break;
 //            case DOWN:
-//                player.setMoveCommand(new XY(0, 1));
+//                player.setMoveCommand(new de.hsa.games.fatsquirrel.core.XY(0, 1));
 //                break;
 //            case MASTER_ENERGY:
 //                ui.outputEnergy(player.getEnergy());

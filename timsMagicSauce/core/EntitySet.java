@@ -7,9 +7,7 @@ public class EntitySet {
 
     private ArrayList<Entity> entities;
 
-    public EntitySet() {
-        entities = new ArrayList<>();
-    }
+    public EntitySet() { entities = new ArrayList<>(); }
 
     public void insert(Entity e) {
         entities.add(e);

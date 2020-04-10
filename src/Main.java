@@ -1,42 +1,49 @@
+import fatsquirrel.core.*;
+
 public class Main {
 
     public static void main(String[] args) {
 
+
         //erzeuge brett und best. menge entities
-        GameBoard gameBoard = new GameBoard(10, 10);
-        EntitySet testSetOfEntities = new EntitySet(gameBoard.height * gameBoard.width);
-
-        //füll das board damit
-        testSetOfEntities.fillBoardRandomly(gameBoard);
-
-        //entities werden in array gespeichert
-        Entity[] allEntitiesOnField = testSetOfEntities.getAllEntitiesOnField();
-
-
+        Board gameBoard = new Board();
+        EntitySet entities = new EntitySet(gameBoard.getHeight()*gameBoard.getWidth());
 
         //loooooooooop
 
-        for (int testRounds = 0; testRounds < 3; testRounds++) {
-            System.out.println(testSetOfEntities.toString());
+        for (int testRounds = 0; testRounds < 20; testRounds++) {
 
-            for (int i = 0; i <= allEntitiesOnField.length - 1; i++) {
-                Entity entity = allEntitiesOnField[i];
+            System.out.println(entities.toString());
+            gameBoard.updateGameBoard(entities.getEntitiesArr());
+            System.out.println(gameBoard.toString());
+
+
+            for (int i = 0; i <= entities.getEntitiesArr().length - 1; i++) {
+                Entity e = entities.getEntitiesArr()[i];
+
                 try {
-                    //make them move
-                    if (entity.getType() != HandOperatedMasterSquirrel.getTYPE()) {
-                        XY newPosition = entity.nextXY();
-                    entity.setXy(newPosition);}
-                    else {
-                        XY newPosition = ((HandOperatedMasterSquirrel) entity).nextXY(gameBoard);
-                        entity.setXy(newPosition);
+                    boolean checker = true;
+                    while (checker) {
+                        XY newPos = e.nextStep();
+                        try {
+                            if (gameBoard.inRange(newPos)) {
+                                checker = false;
+                            }
+                            if (gameBoard.posIsEmpty(newPos)
+                                    || e.getType().equals(BadPlant.getTYPE())
+                                    || e.getType().equals(GoodPlant.getTYPE())
+                                    || e.getType().equals(Wall.getTYPE())) {
+                                e.setXy(newPos);
+                            } else {
+                                e.collision(gameBoard.getEntity(newPos), gameBoard, entities);
+                            }
+                        } catch (NullPointerException ignored) {
+                        }
                     }
-                    gameBoard.updateGameBoard(allEntitiesOnField);
-
-                } catch (NullPointerException e) {
+                } catch (NullPointerException ignored) {
                 }
+                Entity[] allEntitiesOnField = entities.getEntitiesArr();
             }
         }
-
     }
 }
-
