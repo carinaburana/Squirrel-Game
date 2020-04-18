@@ -115,7 +115,7 @@ switch (key){
     }
 }
 
-
+/*
 
     public void fillBoard(GameBoard gameBoard, BoardConfig config) {
         //walls horizontal
@@ -156,6 +156,7 @@ switch (key){
 
         }
     }
+    */
 
     @Override
     public String toString() {
