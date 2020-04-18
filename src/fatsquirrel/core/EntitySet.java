@@ -1,10 +1,12 @@
 package fatsquirrel.core;
 
+import java.util.HashMap;
+
 public class EntitySet {
     Entity[] entities;
 
-    public EntitySet(int n) {
-        entities = new Entity[n];
+    public EntitySet(BoardConfig config) {
+        entities = new Entity[config.getHeight()*config.getWidth()];
     }
 
     public Entity[] getEntitiesArr() {
@@ -86,8 +88,36 @@ public class EntitySet {
         }
         return id;
     }
+    public void fillBoard(BoardConfig config){
+       createWalls(config);
+       spawnEntities(config);
+    }
 
-    public void fillBoard(Board gameBoard) {
+private void createWalls(BoardConfig config){
+    //walls horizontal
+    for (int x = 0; x < config.getWidth(); x++) {
+        add(new Wall(new XY(x, 0), generateId()));
+        add(new Wall(new XY(x, config.getHeight()-1), generateId()));
+    }
+    //walls vertical
+    for (int y = 0; y < config.getHeight(); y++) {
+        add(new Wall(new XY(0, y), generateId()));
+        add(new Wall(new XY(config.getWidth()-1, y), generateId()));
+    }
+}
+
+private void spawnEntities(BoardConfig config){
+    HashMap<String, Integer> entityMap = config.getEntityMap();
+    for (String key : entityMap.keySet()){
+switch (key){
+    case "GoodPlant":
+}
+    }
+}
+
+
+
+    public void fillBoard(GameBoard gameBoard, BoardConfig config) {
         //walls horizontal
         for (int x = 0; x < gameBoard.getWidth(); x++) {
             Wall wall = new Wall(new XY(x, 0), generateId());

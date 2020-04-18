@@ -16,6 +16,9 @@ public class BoardConfig {
         entityMap.put("BadPlant", 4);
         entityMap.put("GoodBeast", 2);
         entityMap.put("BadBeast", 2);
+        entityMap.put("MasterSquirrel", 1);
+        entityMap.put("MiniSquirrel", 1);
+        entityMap.put("HOMS", 1);
     }
 
     public int getHeight() {

@@ -6,14 +6,15 @@ public class Main {
 
 
         //erzeuge brett und best. menge entities
-        BoardConfig config =  new BoardConfig();
+        BoardConfig config = new BoardConfig();
         Board gameBoard = new Board(config);
-        EntitySet entities = new EntitySet(gameBoard.getHeight()*gameBoard.getWidth());
+        EntitySet entities = new EntitySet(config);
+        entities.fillBoard(config);
 
         //loooooooooop
 
         for (int testRounds = 0; testRounds < 20; testRounds++) {
-            System.out.println("got here");
+
             System.out.println(entities.toString());
             gameBoard.updateGameBoard(entities.getEntitiesArr());
             System.out.println(gameBoard.toString());
