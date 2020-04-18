@@ -55,7 +55,14 @@ public abstract class Entity {
         return new XY(x, y);
     }
 
-    public void collision(Entity eOnNewPos, Board board, EntitySet entities) { }
+    public void collision(Entity eOnNewPos, Board board, EntitySet entities) {
+        //energie update
+        //entity "stirbt"(
+        //ggf entityOnNewPos löschen
+        //ggf Beast timeOut+
+        //zug auf neue Pos
+        //spawnen neuer Entity)
+    }
 
     public String toString() {
         return "de.hsa.games.fatsquirrel.core.Entity{" +

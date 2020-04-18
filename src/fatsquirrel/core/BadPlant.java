@@ -13,7 +13,6 @@ public class BadPlant extends Entity {
         return TYPE;
     }
 
-
     public XY nextStep() {
 return this.getXy();
     }

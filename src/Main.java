@@ -6,7 +6,8 @@ public class Main {
 
 
         //erzeuge brett und best. menge entities
-        Board gameBoard = new Board();
+        BoardConfig config =  new BoardConfig();
+        Board gameBoard = new Board(config);
         EntitySet entities = new EntitySet(gameBoard.getHeight()*gameBoard.getWidth());
 
         //loooooooooop

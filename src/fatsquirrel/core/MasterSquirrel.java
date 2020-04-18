@@ -4,6 +4,7 @@ public class MasterSquirrel extends Squirrel {
 
     public static final int START_ENERGY = 1000;
     private final static String TYPE = "MS";
+    private int energy = START_ENERGY;
 
     public MasterSquirrel(XY startXy, int id) {
         super(startXy, id, TYPE, START_ENERGY);

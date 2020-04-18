@@ -9,7 +9,7 @@ public class Board {
     EntitySet entities;
 
 
-    public Board() {
+    public Board(BoardConfig config) {
         this.config = config;
         entities = new EntitySet(config.getHeight() * config.getWidth());
         start();

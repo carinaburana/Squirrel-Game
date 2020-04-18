@@ -7,31 +7,44 @@ public class EntitySet {
         entities = new Entity[n];
     }
 
-    public Entity[] getEntitiesArr() { return entities; }
+    public Entity[] getEntitiesArr() {
+        return entities;
+    }
 
     public void add(Entity entity) {
         for (int i = 0; i < entities.length; i++) {
-            try { if (entities[i] != null){ break;};
+            try {
+                if (entities[i] != null) {
+                    break;
+                }
+                ;
             } catch (NullPointerException e) {
-                entities[i] = entity;}
-            }}
-
-    public void remove(Entity e) {
-        for (int i = 0; i < entities.length; i++) {
-            if (e.equals(entities[i])) {
-                entities[i] = null;
-                return;
+                entities[i] = entity;
             }
         }
     }
 
-    public Entity getEntity(XY pos){
-        for (int i = 0; i < entities.length; i++){
-            if(entities[i].getXy() == pos)
+    public void remove(Entity e) {
+        for (int i = 0; i < entities.length; i++) {
+            try {
+                if (e.equals(entities[i])) {
+                    entities[i] = null;
+                    return;
+                }
+            } catch (NullPointerException ignored) {
+            }
+        }
+    }
+
+
+    public Entity getEntity(XY pos) {
+        for (int i = 0; i < entities.length; i++) {
+            if (entities[i].getXy() == pos)
                 return entities[i];
         }
         return null;
     }
+
     /*
     public void remove(de.hsa.games.fatsquirrel.core.XY pos){
         for(int i = 0; i< entities.length; i++){
@@ -49,7 +62,7 @@ public class EntitySet {
             boolean check = true;
             while (check) {
                 newPos = e.nextStep();
-                if (gameBoard.inRange(newPos)){
+                if (gameBoard.inRange(newPos)) {
                     check = false;
                 }
             }
@@ -63,26 +76,26 @@ public class EntitySet {
 
     public int generateId() {
         int id;
-            for (id = 0; id < entities.length; id++) {
-                try {
-                    if (entities[id] == null)
-                        return id;
-                } catch (NullPointerException e) {
+        for (id = 0; id < entities.length; id++) {
+            try {
+                if (entities[id] == null)
                     return id;
-                }
+            } catch (NullPointerException e) {
+                return id;
             }
+        }
         return id;
     }
 
     public void fillBoard(Board gameBoard) {
         //walls horizontal
-        for(int x= 0; x<gameBoard.getWidth(); x++){
-            Wall wall = new Wall (new XY(x, 0), generateId());
+        for (int x = 0; x < gameBoard.getWidth(); x++) {
+            Wall wall = new Wall(new XY(x, 0), generateId());
             add(wall);
             gameBoard.updateGameBoard(entities);
         }
         //walls vertical
-        for (int y = 0; y<gameBoard.getHeight(); y++){
+        for (int y = 0; y < gameBoard.getHeight(); y++) {
             Wall wall = new Wall(new XY(0, y), generateId());
             add(wall);
             gameBoard.updateGameBoard(entities);
@@ -120,12 +133,13 @@ public class EntitySet {
 
         try {
             for (Entity e : entities) {
-                try{
-                    if(!e.getType().equals(Wall.getTYPE())) {
+                try {
+                    if (!e.getType().equals(Wall.getTYPE())) {
                         builder.append(e.toString());
                         builder.append('\n');
                     }
-                }catch (NullPointerException ignored){}
+                } catch (NullPointerException ignored) {
+                }
             }
         } catch (NullPointerException ignored) {
         }

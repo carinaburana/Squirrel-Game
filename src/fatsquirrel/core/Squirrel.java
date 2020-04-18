@@ -1,9 +1,8 @@
 package fatsquirrel.core;
 
 public abstract class Squirrel extends Entity {
-
-    private  int startEnergy;
-   private String type;
+    private  int energy;
+    private String type;
     private int id;
     XY xy;
     int timeOut;
@@ -13,6 +12,10 @@ public abstract class Squirrel extends Entity {
         this.timeOut = 0;
     }
 
+    public int getEnergy() { return energy; }
+    public String getType() { return type; }
+    public int getId() { return id; }
+    public XY getXy() { return xy; }
     public void updateEnergy(int deltaEnergy) {
         this.energy += deltaEnergy;
     }
