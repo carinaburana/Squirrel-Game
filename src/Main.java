@@ -13,7 +13,7 @@ public class Main {
         //loooooooooop
 
         for (int testRounds = 0; testRounds < 20; testRounds++) {
-
+            System.out.println("got here");
             System.out.println(entities.toString());
             gameBoard.updateGameBoard(entities.getEntitiesArr());
             System.out.println(gameBoard.toString());
