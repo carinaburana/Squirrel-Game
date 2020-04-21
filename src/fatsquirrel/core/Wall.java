@@ -4,8 +4,8 @@ public class Wall extends Entity {
     private final static int ENERGY = -10;
     private final static String TYPE = "WA";
 
-    public Wall(XY startXy, int id) {
-        super(startXy, id, TYPE, ENERGY);
+    public Wall(XY startXy) {
+        super(startXy, TYPE, ENERGY);
     }
 
     public static String getTYPE() {
@@ -14,7 +14,7 @@ public class Wall extends Entity {
 
     public static int getENERGY() { return ENERGY; }
 
-    public XY nextStep() { return this.getXy(); }
+    public void nextStep() { }
 
 
 }

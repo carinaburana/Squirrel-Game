@@ -7,13 +7,11 @@ public class GoodPlant extends Entity {
 
     public static String getTYPE() { return TYPE; }
 
-    public GoodPlant(XY startXy, int id) {
-        super(startXy, id, TYPE, START_ENERGY);
+    public GoodPlant(XY startXy) {
+        super(startXy, TYPE, START_ENERGY);
     }
 
-    public XY nextStep() {
-        return this.getXy();
-    }
+    public void nextStep() { }
 }
 
 

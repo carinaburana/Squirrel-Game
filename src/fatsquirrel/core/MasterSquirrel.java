@@ -6,13 +6,13 @@ public class MasterSquirrel extends Squirrel {
     private final static String TYPE = "MS";
     private int energy = START_ENERGY;
 
-    public MasterSquirrel(XY startXy, int id) {
-        super(startXy, id, TYPE, START_ENERGY);
+    public MasterSquirrel(XY startXy) {
+        super(startXy, TYPE, START_ENERGY);
     }
 
     //fürs MiniSquirrels :))
-    public MasterSquirrel(XY startXy, int id, String type, int energy) {
-        super(startXy, id, type, energy);
+    public MasterSquirrel(XY startXy, String type, int energy) {
+        super(startXy, type, energy);
     }
 
     public static String getTYPE() {
@@ -22,6 +22,8 @@ public class MasterSquirrel extends Squirrel {
     public void updateEnergy(int deltaEnergy) {
         this.energy += deltaEnergy;
     }
+
+    public void collision(){}
 
     public boolean checkMini(Entity entity) {
         if (entity instanceof MiniSquirrel) {

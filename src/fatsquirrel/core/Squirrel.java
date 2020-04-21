@@ -1,23 +1,11 @@
 package fatsquirrel.core;
 
-public abstract class Squirrel extends Entity {
-    private  int energy;
-    private String type;
-    private int id;
-    XY xy;
-    int timeOut;
+public abstract class Squirrel extends Character {
+    private int timeOut;
 
-    public Squirrel(XY startXy, int id, String type, int energy) {
-        super(startXy, id, type, energy);
+    public Squirrel(XY startXy, String type, int energy) {
+        super(startXy, type, energy);
         this.timeOut = 0;
-    }
-
-    public int getEnergy() { return energy; }
-    public String getType() { return type; }
-    public int getId() { return id; }
-    public XY getXy() { return xy; }
-    public void updateEnergy(int deltaEnergy) {
-        this.energy += deltaEnergy;
     }
 
     public void setTimeOut(int timeOut) {
@@ -29,12 +17,11 @@ public abstract class Squirrel extends Entity {
     }
 
 
-    public XY nextStep() {
+    public void nextStep() {
         if (timeOut > 0) {
             timeOut--;
-            return this.getXy();
         }
-        return super.nextStep();
+        super.nextStep();
     }
 
     public void collision(Entity eOnNewPos, Board board, EntitySet entities) {
@@ -50,11 +37,11 @@ public abstract class Squirrel extends Entity {
                 break;
             case "BP":
                 entities.remove(eOnNewPos);
-                entities.add(new BadPlant(board.generateXY(), entities.generateId()));
+                entities.add(new BadPlant(board.generateXY()));
                 break;
             case "GP":
                 entities.remove(eOnNewPos);
-                entities.add(new GoodPlant(board.generateXY(), entities.generateId()));
+                entities.add(new GoodPlant(board.generateXY()));
                 break;
             case "BB":
                 BadBeast bb = ((BadBeast) eOnNewPos);

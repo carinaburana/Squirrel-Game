@@ -4,85 +4,140 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Board {
+   private Entity[][] gameBoard;
+   private BoardConfig config;
+   private EntitySet entities;
+    private int maxNumOfBB;
+    private int maxNumOfGB;
+    private int maxNumOfGP;
+    private int maxNumOfBP;
+    private int maxNumOfFreeWalls;
+    private int height;
+    private int width;
 
-    BoardConfig config;
-    EntitySet entities;
 
-
-    public Board(BoardConfig config) {
+    public Board(BoardConfig config, EntitySet entities) {
         this.config = config;
-        entities = new EntitySet(config.getHeight() * config.getWidth());
-        start();
+        this.entities = entities;
+        this.height = config.getHeight();
+        this.width = config.getWidth();
+        this.gameBoard =  gameBoard();
     }
 
-    public void start() {
-        spawnEntities(config.getEntityMap());
-        drawWalls(config.getHeight(), config.getWidth());
-    }
-
-    public void drawWalls(int height, int width) {
-        //walls horizontal
-        for (int x = 0; x < width; x++) {
-            entities.add(new Wall(new XY(x, 0), entities.generateId()));
-            entities.add(new Wall(new XY(x, height - 1), entities.generateId()));
+    public Entity[][] gameBoard() {
+        Entity[][] gameBoard = new Entity[config.getWidth()][config.getHeight()];
+        Entity[] array = entities.getEntitiesArr();
+        for (int i = 0; i < array.length; i++) {
+            try {
+                gameBoard[array[i].getXy().getX()][array[i].getXy().getY()] = array[i];
+            } catch (NullPointerException ignored) {
+            }
         }
-        //walls vertical
-        for (int y = 1; y < height - 1; y++) {
-            entities.add(new Wall(new XY(0, y), entities.generateId()));
-            entities.add(new Wall(new XY(width - 1, y), entities.generateId()));
-        }
-        updateGameBoard(entities.getEntitiesArr());
+        return gameBoard;
     }
 
-    public void spawnEntities(HashMap<String, Integer> entityMap) {
+    public Entity[][] getGameBoard() {
+        return gameBoard;
+    }
 
-        entities.add(new HandOperatedMS(generateXY(), entities.generateId()));
-
-        for (String key : entityMap.keySet()) {
-            for (int i = 0; i <= entityMap.get(key); i++) {
-
-                switch (key) {
+    private void setConfigNumbers(){
+        HashMap<String, Integer> entitiyMap = config.getEntityMap();
+        for(String key : entitiyMap.keySet()){
+                switch (key){
                     case "GoodPlant":
-                        entities.add(new GoodPlant(generateXY(), entities.generateId()));
-                        break;
-                    case "GoodBeast":
-                        entities.add(new GoodBeast(generateXY(), entities.generateId()));
-                        break;
-                    case "BadBeast":
-                        entities.add(new BadBeast(generateXY(), entities.generateId()));
+                        this.maxNumOfGP = entitiyMap.get(key);
                         break;
                     case "BadPlant":
-                        entities.add(new BadPlant(generateXY(), entities.generateId()));
+                        this.maxNumOfBP = entitiyMap.get(key);
                         break;
-                    default:
-                        System.out.println("error in spawnEntities");
+                    case "GoodBeast":
+                        this.maxNumOfGB = entitiyMap.get(key);
+                        break;
+                    case "BadBeast":
+                        this.maxNumOfBB = entitiyMap.get(key);
+                        break;
+                    case "FreeWalls":
+                        this.maxNumOfFreeWalls = entitiyMap.get(key);
+                        break;
                 }
             }
         }
+
+    public EntitySet getEntitySet() {
+        return entities;
     }
 
-    public Entity [][] board(EntitySet entities){
-        Entity[][] board = new Entity[config.getWidth()][config.getHeight()];
-        Entity [] array = entities.getEntitiesArr();
-        for(int i = 0; i<array.length; i++){
-            try {
-               board[array[i].getXy().getX()][array[i].getXy().getY()] = array[i];
-            }catch (NullPointerException ignored){}
-        }
-        return board;
+    public int getHeight() {
+        return config.getHeight();
     }
 
-    public int generateId(EntitySet entitySet) {
-        int id;
-        for (id = 0; id < entitySet.getEntitiesArr().length; id++) {
-            try {
-                if (entitySet.getEntitiesArr()[id] == null)
-                    return id;
-            } catch (NullPointerException e) {
-                return id;
+    public int getWidth() {
+        return config.getWidth();
+    }
+
+    public Entity getEntity(XY pos) {
+        return entities.getEntity(pos);
+    }
+
+    private void setEntity(Entity e) {
+        XY pos = e.getXy();
+        if (inRange(pos)) {
+            if (posIsEmpty(pos)) {
+                entities.add(e);
+                gameBoard[pos.getX()][pos.getY()] = e;
+            }
+            }
+            //collision
+            else {
             }
         }
-        return id;
+
+
+    public void fillBoard() {
+        drawWalls(height, width);
+        spawnEntities(config.getEntityMap());
+    }
+
+    private void drawWalls(int height, int width) {
+        //walls horizontal
+        for (int x = 0; x < width; x++) {
+            setEntity(new Wall(new XY(x, 0)));
+            setEntity(new Wall(new XY(x, height - 1)));
+        }
+        //walls vertical
+        for (int y = 1; y < height - 1; y++) {
+            setEntity(new Wall(new XY(0, y)));
+            setEntity(new Wall(new XY(width - 1, y)));
+        }
+    }
+
+    private void spawnEntities(HashMap<String, Integer> entityMap) {
+        try {
+            for (String key : entityMap.keySet()) {
+                for (int i = 0; i <= entityMap.get(key); i++) {
+
+                    switch (key) {
+                        case "GoodPlant":
+                            setEntity(new GoodPlant(generateXY()));
+                            break;
+                        case "GoodBeast":
+                            setEntity(new GoodBeast(generateXY()));
+                            break;
+                        case "BadBeast":
+                            setEntity(new BadBeast(generateXY()));
+                            break;
+                        case "BadPlant":
+                            setEntity(new BadPlant(generateXY()));
+                            break;
+                        default:
+                            System.out.println("error in spawnEntities");
+                    }
+                }
+            }
+            setEntity(new HandOperatedMS(generateXY()));
+        } catch (NullPointerException ignored) {
+        }
+
     }
 
 
@@ -101,51 +156,38 @@ public class Board {
         return null;
     }
 
-    public int getHeight() {
-        return config.getHeight();
-    }
-
-    public EntitySet getEntitySet() {
-        return entities;
-    }
-
-    public int getWidth() {
-        return config.getWidth();
-    }
-
-    public Entity getEntity(XY pos) {
-        return entities.getEntity(pos);
-    }
-
-    public void clearBoard() {
+    private void clearBoard() {
         for (int i = 0; i < entities.getEntitiesArr().length; i++) {
             entities.remove(entities.getEntitiesArr()[i]);
         }
     }
 
-    public void updateGameBoard(Entity[] allEntitiesOnField) {
-        this.clearBoard();
-        for (Entity e : allEntitiesOnField) {
+    public void updateGameBoard(Entity[] newEntities) {
+        //this.clearBoard();
+        for (int i = 0; i < newEntities.length; i++) {
             try {
-                setEntity(e);
+                setEntity(newEntities[i]);
             } catch (NullPointerException ignored) {
             }
         }
     }
 
-    public void setEntity(Entity e) {
-        XY pos = e.getXy();
-        if (inRange(pos)) {
-            if (posIsEmpty(pos)) {
-                entities.add(e);
-            }
-            //collision
-            else {
+    public XY checkNearestPlayerEntity(XY pos, Entity e) {
+        int x = pos.getX();
+        int y = pos.getY();
+        for (int i = 1; i < 7; i++) {
+            for (int x_check = -i; x_check <= i; x_check++) {
+                for (int y_check = -i; y_check <= i; y_check++) {
+                    if (getEntity(new XY(x_check, y_check)) instanceof Squirrel) {
+                        return new XY(x_check, y_check);
+                    }
+                }
             }
         }
+        return null;
     }
 
-    public boolean inRange(XY pos) {
+    private boolean inRange(XY pos) {
         int x = pos.getX();
         int y = pos.getY();
         if (x < 0 || x >= config.getWidth()) {
@@ -157,46 +199,30 @@ public class Board {
         return true;
     }
 
-    public boolean posIsEmpty(XY position) {
-        try {
+    private boolean posIsEmpty(XY position) {
             if (entities.getEntity(position) != null) {
                 return false;
             }
-        } catch (ArrayIndexOutOfBoundsException a) {
-            System.out.println("out of bound");
-        } catch (NullPointerException e) {
-            return true;
-        }
-        return false;
+        return true;
     }
 
-    public String[][] flatten() {
-        String[][] flattenedBoard = new String[config.getWidth()][config.getHeight()];
-        for (int i = 0; i < entities.getEntitiesArr().length; i++) {
-            try {
-                if (entities.getEntitiesArr()[i] != null) {
-                    XY pos = entities.getEntitiesArr()[i].getXy();
-                    flattenedBoard[pos.getX()][pos.getY()] = ("|" + entities.getEntitiesArr()[i].getType() + "|");
-                }
-            } catch (NullPointerException n) {
-                XY pos = entities.getEntitiesArr()[i].getXy();
-                flattenedBoard[pos.getX()][pos.getY()] = ("|  |");
+    public void flatten(EntitySet entities) {
+        FlattenedBoard flattenedBoard = new FlattenedBoard(this, entities);
+        toString(flattenedBoard.toStringArray());
+    }
+
+    private String toString(String[][] stringArr) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int y = 0; y < config.getHeight(); y++) {
+            for (int x = 0; x < config.getWidth(); x++) {
+                stringBuilder.append(stringArr[x][y]);
             }
+            stringBuilder.append('\n');
         }
-        return flattenedBoard;
+        System.out.println(stringBuilder);
+        return stringBuilder.toString();
     }
 
-
-        public String toString(String[][] stringArr) {
-            StringBuilder stringBuilder = new StringBuilder();
-            for (int y = 0; y < config.getHeight(); y++) {
-                for (int x = 0; x < config.getWidth(); x++) {
-                        stringBuilder.append(stringArr[x][y]);
-                }
-                stringBuilder.append('\n');
-            }
-            return stringBuilder.toString();
-        }
-    }
+}
 
 

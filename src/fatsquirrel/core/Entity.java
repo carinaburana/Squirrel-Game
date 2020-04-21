@@ -1,15 +1,17 @@
 package fatsquirrel.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class Entity {
 
     private int id;
     private int energy;
-    private XY xy;
+    public XY xy;
     private String type;
 
-    protected Entity(XY startXy, int id, String type, int energy) {
+    protected Entity(XY startXy, String type, int energy) {
         this.xy = startXy;
-        this.id = id;
         this.energy = energy;
         this.type = type;
     }
@@ -30,39 +32,15 @@ public abstract class Entity {
 
     public void setXy(XY xy) { this.xy = xy; }
 
-    public void updateEnergy(int deltaEnergy) {}
+    public void setId(int id){ this.id = id; }
 
-    public void nextStep(EntityContext context) { }
-
-    public XY nextStep() {
-        int zufall;
-        zufall = (int) (Math.random() * 4) + 1;
-        int x = this.getXy().getX();
-        int y = this.getXy().getY();
-
-       switch (zufall) {
-            case 1: x--; y--; break;
-            case 2: y--; break;
-            case 3: y--; x++; break;
-            case 4: x--; break;
-            case 5: x++; break;
-            case 6: x--; y++; break;
-            case 7: y++; break;
-            case 8: x++; y++; break;
-            default:
-           }
-
-        return new XY(x, y);
+    public void updateEnergy(int deltaEnergy) {
+        this.energy += deltaEnergy;
     }
 
-    public void collision(Entity eOnNewPos, Board board, EntitySet entities) {
-        //energie update
-        //entity "stirbt"(
-        //ggf entityOnNewPos löschen
-        //ggf Beast timeOut+
-        //zug auf neue Pos
-        //spawnen neuer Entity)
-    }
+    public void nextStep(){ this.xy = xy.randomMoveDirection(); }
+
+    public void collision() {}
 
     public String toString() {
         return "de.hsa.games.fatsquirrel.core.Entity{" +

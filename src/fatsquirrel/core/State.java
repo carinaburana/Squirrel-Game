@@ -2,8 +2,8 @@ package fatsquirrel.core;
 
 public class State {
 
-    public int highscore;
-    Board gameBoard;
+    public int highscore=0;
+    Board board;
 
     public State(Board board){}
 

@@ -1,13 +1,14 @@
 package fatsquirrel.core;
 
-public class GoodBeast extends Entity {
+public class GoodBeast extends Character {
 
     private final static int START_ENERGY = 200;
     private final static String TYPE = "GB";
     private int timeOut;
 
-    public GoodBeast(XY startXy, int id) {
-        super(startXy, id, TYPE, START_ENERGY);
+
+    public GoodBeast(XY startXy) {
+        super(startXy, TYPE, START_ENERGY);
         this.timeOut = 0;
     }
 
@@ -15,13 +16,29 @@ public class GoodBeast extends Entity {
         return START_ENERGY;
     }
 
-    public XY nextStep() {
+/*
+    public void nextStep() {  //random bewegung
         if (timeOut > 0) {
             timeOut--;
-            return this.getXy();
+
+        }else{
+            timeOut = 4;
         }
-        timeOut = 4;
-        return super.nextStep();
+        super.nextStep();
+    }
+*/
+    public void nextStep() { //gezielte bewegung
+        XY moveDirection = getXy().moveFromPlayer(getXy().moveDirectionTowardsPlayer(getXy()));
+        if (timeOut > 0) {
+            timeOut--;
+        }else {
+            try{
+            this.getXy().addDirection(moveDirection);
+        }catch(NullPointerException n){
+                super.nextStep();
+            }
+            timeOut = 4;
+        }
     }
 
     public static String getTYPE() {
